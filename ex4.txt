@@ -1,0 +1,25 @@
+1. Diferença entre csv.reader e csv.DictReader
+
+csv.reader: Retorna cada linha como uma lista de strings. É mais rápido e adequado quando o arquivo não tem cabeçalho ou quando a posição das colunas é fixa.
+csv.DictReader: Retorna cada linha como um dicionário (OrderedDict), mapeando o cabeçalho ao valor. É melhor para legibilidade e quando a ordem das colunas pode mudar.
+2. Extração de Dados com BeautifulSoup O processo consiste em:
+
+Importar a biblioteca e carregar o HTML.
+Criar um objeto BeautifulSoup com o conteúdo e o parser (ex: html.parser).
+Usar o método find_all('p') para buscar todas as tags <p>.
+Iterar sobre a lista resultante para extrair o texto com .get_text().
+3. APIs vs. Web Scraping
+
+API:
+Vantagem: Dados estruturados, oficiais e com menor chance de quebrar.
+Desvantagem: Frequentemente possuem limites de requisições e podem ser pagas.
+Web Scraping:
+Vantagem: Acesso a qualquer dado público, mesmo sem API oficial.
+Desvantagem: Complexo de manter (quebra se o site mudar) e pode violar termos de uso.
+4. Proteção de Chaves de API É fundamental porque as chaves dão acesso à sua conta e podem gerar cobranças indevidas ou roubo de dados.
+
+Variáveis de Ambiente: Armazenar as chaves no sistema operacional, fora do código fonte.
+Arquivo .gitignore: Garantir que arquivos de configuração (como .env) não sejam enviados para repositórios públicos como o GitHub.
+5. Streaming de Dados do Twitter A Streaming API seria a mais apropriada.
+
+Por quê? Ela mantém uma conexão persistente que entrega tweets em tempo real assim que ocorrem. A Search API é voltada para buscas pontuais de dados históricos (passados).~"
