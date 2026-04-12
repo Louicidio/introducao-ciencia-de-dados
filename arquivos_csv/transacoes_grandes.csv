@@ -58,4 +58,44 @@ id_pedido,data,produto,categoria,preco,quantidade,regiao,metodo_pagamento,avalia
 57,2025-01-30,Forno Eletrico,Casa,620.00,1,Sudeste,Boleto,5
 58,2025-01-31,Mouse Office,Eletronicos,49.90,4,Sul,Pix,4
 59,2025-01-31,Meias Esportivas,Roupas,19.90,6,Norte,Cartao,4
-60,2025-02-01,Organizador Mesa,Casa,35.00,3,Sudeste,Pix,4
+60,2025-01-16,SSD 1TB,Eletronicos,550.00,1,Sul,Pix,5
+61,2025-01-17,Camiseta Basica,Roupas,49.90,5,Norte,Boleto,4
+62,2025-01-17,Estante Livros,Móveis,420.00,1,Sudeste,Cartao,4
+63,2025-01-18,Controle Game,Eletronicos,299.90,1,Sul,Pix,5
+64,2025-01-18,Boné Esportivo,Roupas,69.90,2,Nordeste,Cartao,4
+65,2025-01-19,Carregador USB,Acessorios,39.90,4,Sudeste,Pix,4
+66,2025-01-19,Frigideira Antiaderente,Casa,120.00,1,Sul,Boleto,4
+67,2025-01-20,Notebook 16,Eletronicos,4800.00,1,Sudeste,Cartao,5
+68,2025-01-20,Cadeira Gamer,Móveis,1200.00,1,Sul,Pix,5
+69,2025-01-21,Fone In-Ear,Eletronicos,89.90,3,Nordeste,Cartao,4
+70,2025-01-21,Relogio Esportivo,Acessorios,350.00,1,Sudeste,Pix,4
+71,2025-01-22,Camiseta Regata,Roupas,39.90,4,Sul,Boleto,4
+72,2025-01-22,Lampada Inteligente,Casa,79.90,2,Sudeste,Cartao,5
+73,2025-01-23,Monitor 27,Eletronicos,1200.00,1,Sul,Pix,5
+74,2025-01-23,Mochila Viagem,Acessorios,220.00,1,Norte,Cartao,4
+75,2025-01-24,Jaqueta Jeans,Roupas,199.90,1,Sudeste,Pix,4
+76,2025-01-24,Air Fryer,Casa,499.90,1,Sul,Cartao,5
+77,2025-01-25,Teclado Gamer RGB,Eletronicos,420.00,1,Sudeste,Pix,5
+78,2025-01-25,Chinelo Casual,Roupas,29.90,3,Nordeste,Boleto,4
+79,2025-01-26,Hub USB,Acessorios,79.90,2,Sul,Cartao,4
+80,2025-01-26,Panela Pressao,Casa,180.00,1,Sudeste,Pix,4
+81,2025-01-27,Smartphone Y,Eletronicos,1800.00,1,Sul,Cartao,5
+82,2025-01-27,Camiseta Polo,Roupas,89.90,2,Sudeste,Pix,4
+83,2025-01-28,Suporte Notebook,Acessorios,99.90,2,Norte,Cartao,4
+84,2025-01-28,Liquidificador,Casa,210.00,1,Sul,Pix,5
+85,2025-01-29,HD Externo 2TB,Eletronicos,480.00,1,Sudeste,Cartao,5
+86,2025-01-29,Shorts Esportivo,Roupas,59.90,3,Nordeste,Pix,4
+87,2025-01-30,Carregador Wireless,Acessorios,150.00,1,Sul,Cartao,4
+88,2025-01-30,Forno Eletrico,Casa,620.00,1,Sudeste,Boleto,5
+89,2025-01-31,Mouse Office,Eletronicos,49.90,4,Sul,Pix,4
+90,2025-01-31,Meias Esportivas,Roupas,19.90,6,Norte,Cartao,4
+91,2025-02-01,Organizador Mesa,Casa,35.00,3,Sudeste,Pix,4
+92,2025-01-12,Camiseta Casual,Roupas,59.90,4,Sul,Pix,4
+93,2025-01-13,Fone Headset,Eletronicos,249.90,1,Sudeste,Cartao,5
+94,2025-01-13,Aspirador Portatil,Casa,299.00,1,Centro-Oeste,Boleto,4
+95,2025-01-14,Teclado Sem Fio,Eletronicos,199.90,2,Sul,Pix,4
+96,2025-01-14,Calca Jeans,Roupas,149.90,2,Sudeste,Cartao,4
+97,2025-01-15,Webcam HD,Eletronicos,180.00,1,Nordeste,Cartao,5
+98,2025-01-15,Carregador Portatil,Acessorios,120.00,3,Sul,Pix,4
+99,2025-01-16,Cafeteira,Casa,350.00,1,Sudeste,Cartao,5
+100,2025-01-30,Carregador Wireless,Acessorios,150.00,1,Sul,Cartao,4

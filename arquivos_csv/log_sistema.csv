@@ -1,0 +1,5 @@
+id_evento,tipo,timestamp,descricao
+1,login,2024-01-01 08:00:00,Usuário admin logou
+2,erro,2024-01-01 08:05:10,Falha ao carregar módulo X
+3,login,2024-01-01 08:10:00,Usuário convidado logou
+4,sucesso,2024-01-01 08:15:30,Operação concluída
