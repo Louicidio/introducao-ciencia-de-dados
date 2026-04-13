@@ -1,3 +1,5 @@
+#OBS: os dados do gov são terriveis de mexer, 
+#200 L de codigo e 80 é so tratamento do banco de dados
 import mysql.connector
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -18,7 +20,22 @@ def conectar_banco():
 def coletar_dados_cargos(caminho_arquivo="ano_completo.xlsx"):
     try:
         df = pd.read_excel(caminho_arquivo)
-        print(f"Dados de cargos vagos coletados: {len(df)} registros.")
+        
+        mapa_colunas = {
+            'NOME_MES': 'data_texto', # Coluna com "Jan 2017"
+            'SIGLA_ORGAO': 'sigla_orgao', 
+            'NOME_ORGAO': 'nome_cargo', 
+            'VAGAS': 'total_cargos_vagos',
+            'OCUPADA': 'total_cargos_ocupados'
+        }
+        
+        df.rename(columns=mapa_colunas, inplace=True)
+        
+        # Calcula o total de cargos
+        if 'total_cargos_vagos' in df.columns and 'total_cargos_ocupados' in df.columns:
+            df['total_cargos'] = df['total_cargos_vagos'] + df['total_cargos_ocupados']
+
+        print(f"Dados de cargos vagos coletados e padronizados: {len(df)} registros.")
         return df
     except FileNotFoundError:
         print(f"Erro: Arquivo não encontrado.")
@@ -31,13 +48,20 @@ def processar_dados(df):
     if df is None:
         return None
     try:
-        # Garantir que as colunas numericas sao tratadas corretamente
+       # aberração pra tratar dados
+        df['data'] = pd.to_datetime(df['data_texto'], format='%b %Y', errors='coerce')
+        
+        # Extrai o ano e o mês da nova coluna 'data'
+        df['ano'] = df['data'].dt.year
+        df['mes'] = df['data'].dt.month
+
+        # Remove linhas onde a data não pôde ser convertida
+        df.dropna(subset=['data'], inplace=True)
+
         colunas_numericas = ['total_cargos_vagos', 'total_cargos_ocupados', 'total_cargos']
         for col in colunas_numericas:
             df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
         
-        # Criar uma coluna de data para ordenação e filtros
-        df['data'] = pd.to_datetime(df['ano'].astype(str) + '-' + df['mes'].astype(str) + '-01')
         df = df.sort_values('data').reset_index(drop=True)
         
         print(f"Dados processados e formatados. Total de {len(df)} registros.")
@@ -56,7 +80,7 @@ def calcular_estatisticas(df):
             'mínimo_vagos': df['total_cargos_vagos'].min(),
             'total_geral_vagos': df['total_cargos_vagos'].sum()
         }
-        print("\n📊 ESTATÍSTICAS DE CARGOS VAGOS (ÚLTIMOS 10 ANOS):")
+        print("\nESTATÍSTICAS DE CARGOS VAGOS") 
         for chave, valor in stats.items():
             print(f"- {chave.replace('_', ' ').capitalize()}: {valor:,.0f}".replace(',', '.'))
         return stats
@@ -68,7 +92,7 @@ def criar_graficos(df):
     if df is None: return
     try:
         fig, axes = plt.subplots(2, 2, figsize=(18, 12))
-        fig.suptitle('Análise de Cargos Vagos no Executivo Federal (Últimos 10 Anos)', fontsize=20, fontweight='bold')
+        fig.suptitle('Análise de Cargos Vagos no Executivo Federal ', fontsize=20, fontweight='bold')
 
         # Gráfico 1
         df_agg_data = df.groupby('data')['total_cargos_vagos'].sum()
@@ -95,7 +119,7 @@ def criar_graficos(df):
         axes[1, 1].axis('off')
         stats_text = f"""
         RESUMO ESTATÍSTICO
-        ─────────────────
+        
         Média Mensal: {stats['média_mensal_vagos']:,.0f}
         Pico Máximo: {stats['máximo_vagos']:,.0f}
         Pico Mínimo: {stats['mínimo_vagos']:,.0f}
@@ -145,7 +169,6 @@ def armazenar_banco(df, cnx):
         print(f"Erro ao armazenar no banco: {err}")
 
 def salvar_excel(df):
-    """Salva o DataFrame em um arquivo Excel."""
     if df is None: return
     try:
         df.to_excel("cargos_vagos_analise.xlsx", index=False, engine='openpyxl')
