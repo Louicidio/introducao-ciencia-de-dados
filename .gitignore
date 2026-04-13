@@ -1,0 +1,3 @@
+# Ignorar arquivos e pastas do MySQL
+mysql/
+mysql/mysql.py
