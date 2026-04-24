@@ -1,17 +1,48 @@
 #OBS: os dados do gov são terriveis de mexer, 
 #200 L de codigo e 80 é so tratamento do banco de dados
+import os
 import mysql.connector
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent
+ROOT_DIR = BASE_DIR.parent
+
+#Para usar carregue as informacoes de um arquivo .env 
+def carregar_env_local() -> None:
+    for nome_arquivo in (".env"):
+        caminho = ROOT_DIR / nome_arquivo
+        if not caminho.exists():
+            continue
+        for linha in caminho.read_text(encoding="utf-8").splitlines():
+            linha = linha.strip()
+            if not linha or linha.startswith("#") or "=" not in linha:
+                continue
+            chave, valor = linha.split("=", 1)
+            os.environ.setdefault(chave.strip(), valor.strip())
+
+carregar_env_local()
+
+DB_CONFIG = {
+    "host": os.getenv("DB_HOST"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
+}
+
+if not DB_CONFIG["password"]:
+    raise RuntimeError("Defina DB_PASSWORD (ou TRABALHO2_DB_PASSWORD) no .env da raiz.")
 
 def conectar_banco():
     try:
         return mysql.connector.connect(
-            user='root',
-            password='Luis74411!',
-            host='127.0.0.1',
-            database='Jotair'
+            user=DB_CONFIG["user"],
+            password=DB_CONFIG["password"],
+            host=DB_CONFIG["host"],
+            database=DB_CONFIG["database"],
         )
     except mysql.connector.Error as err:
         print(f"Erro de conexão com o banco: {err}")
@@ -119,7 +150,7 @@ def criar_graficos(df):
         axes[1, 1].axis('off')
         stats_text = f"""
         RESUMO ESTATÍSTICO
-        
+
         Média Mensal: {stats['média_mensal_vagos']:,.0f}
         Pico Máximo: {stats['máximo_vagos']:,.0f}
         Pico Mínimo: {stats['mínimo_vagos']:,.0f}

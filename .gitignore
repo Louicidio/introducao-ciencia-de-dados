@@ -1,3 +1,8 @@
-# Ignorar arquivos e pastas do MySQL
 mysql/
 mysql/mysql.py
+Firebase/jotair-3404c-firebase-adminsdk-fbsvc-ca6cc724cc.json
+Firebase/__pycache__/
+*.pyc
+.env
+**/.env
+Trab3/.env
