@@ -1,0 +1,62 @@
+2026-04-23 08:45:38,666 - ERROR - Arquivo base não encontrado.
+2026-04-23 08:46:04,903 - INFO - Dados carregados e tratados com sucesso.
+2026-04-23 08:46:05,161 - INFO - Estrutura MySQL criada/verificada com sucesso.
+2026-04-23 08:46:05,957 - INFO - Dados gravados no MySQL com sucesso.
+2026-04-23 08:46:06,524 - INFO - Consulta ao MySQL executada com sucesso.
+2026-04-23 08:46:06,743 - INFO - Gráfico de pizza salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_pizza_geral.png
+2026-04-23 08:46:06,744 - INFO - Pipeline executado com sucesso.
+2026-04-23 09:04:24,100 - INFO - Dados carregados e tratados com sucesso.
+2026-04-23 09:04:24,251 - INFO - Estrutura MySQL criada/verificada com sucesso.
+2026-04-23 09:04:26,096 - INFO - Dados gravados no MySQL com sucesso.
+2026-04-23 09:04:26,713 - INFO - Consulta ao MySQL executada com sucesso.
+2026-04-23 09:04:26,951 - INFO - Gráfico de pizza salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_pizza_geral.png
+2026-04-23 09:04:26,966 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:04:26,969 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:04:27,378 - INFO - Gráfico de linha salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_linha_geral.svg
+2026-04-23 09:04:27,390 - INFO - Resumo textual salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\resumo_top10_geral.csv
+2026-04-23 09:04:27,412 - INFO - Estatísticas salvas com sucesso.
+2026-04-23 09:04:27,413 - INFO - Pipeline executado com sucesso.
+2026-04-23 09:06:13,653 - INFO - Dados carregados e tratados com sucesso.
+2026-04-23 09:06:13,714 - INFO - Estrutura MySQL criada/verificada com sucesso.
+2026-04-23 09:06:15,658 - INFO - Dados gravados no MySQL com sucesso.
+2026-04-23 09:06:16,040 - INFO - Consulta ao MySQL executada com sucesso.
+2026-04-23 09:06:16,264 - INFO - Gráfico de pizza salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_pizza_geral.png
+2026-04-23 09:06:16,276 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:06:16,280 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:06:16,767 - INFO - Gráfico de linha salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_linha_geral.svg
+2026-04-23 09:06:16,776 - INFO - Resumo textual salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\resumo_top10_geral.csv
+2026-04-23 09:06:16,796 - INFO - Estatísticas salvas com sucesso.
+2026-04-23 09:06:16,796 - INFO - Pipeline executado com sucesso.
+2026-04-23 09:09:27,823 - INFO - Dados carregados e tratados com sucesso.
+2026-04-23 09:09:27,927 - INFO - Estrutura MySQL criada/verificada com sucesso.
+2026-04-23 09:09:29,797 - INFO - Dados gravados no MySQL com sucesso.
+2026-04-23 09:09:30,298 - INFO - Consulta ao MySQL executada com sucesso.
+2026-04-23 09:09:30,581 - INFO - Gráfico de pizza salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_pizza_geral.png
+2026-04-23 09:09:30,607 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:09:30,613 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:09:31,433 - INFO - Gráfico de linha salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_linha_geral.svg
+2026-04-23 09:09:31,447 - INFO - Resumo textual salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\resumo_top10_geral.csv
+2026-04-23 09:09:31,490 - INFO - Estatísticas salvas com sucesso.
+2026-04-23 09:09:31,492 - INFO - Pipeline executado com sucesso.
+2026-04-23 09:10:11,915 - INFO - Dados carregados e tratados com sucesso.
+2026-04-23 09:10:11,947 - INFO - Estrutura MySQL criada/verificada com sucesso.
+2026-04-23 09:10:13,598 - INFO - Dados gravados no MySQL com sucesso.
+2026-04-23 09:10:14,110 - INFO - Consulta ao MySQL executada com sucesso.
+2026-04-23 09:10:14,373 - INFO - Gráfico de pizza salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_pizza_geral.png
+2026-04-23 09:10:14,392 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:10:14,399 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 09:10:15,260 - INFO - Gráfico de linha salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_linha_geral.svg
+2026-04-23 09:10:15,277 - INFO - Resumo textual salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\resumo_top10_geral.csv
+2026-04-23 09:10:15,298 - INFO - Estatísticas salvas com sucesso.
+2026-04-23 09:10:15,298 - INFO - Pipeline executado com sucesso.
+2026-04-23 10:22:00,435 - INFO - Dados carregados e tratados com sucesso.
+2026-04-23 10:22:00,636 - INFO - Estrutura MySQL criada/verificada com sucesso.
+2026-04-23 10:22:02,293 - INFO - Dados gravados no MySQL com sucesso.
+2026-04-23 10:22:02,947 - INFO - Consulta ao MySQL executada com sucesso.
+2026-04-23 10:22:03,327 - INFO - Gráfico de pizza salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_pizza_geral.png
+2026-04-23 10:22:03,350 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 10:22:03,352 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-23 10:22:03,626 - INFO - Gráfico de linha salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\grafico_linha_geral.svg
+2026-04-23 10:22:03,643 - INFO - Resumo textual salvo em C:\Users\luise\Desktop\2026\Introdução\Trab3\resumo_top10_geral.csv
+2026-04-23 10:22:03,683 - INFO - Estatísticas salvas com sucesso.
+2026-04-23 10:22:03,684 - INFO - Pipeline executado com sucesso.
