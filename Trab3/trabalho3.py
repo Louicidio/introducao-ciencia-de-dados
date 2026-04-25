@@ -20,7 +20,7 @@ PASTA_SAIDA = BASE_DIR
 
 #Para usar carregue as informacoes de um arquivo .env 
 def _carregar_env_local() -> None:
-    for nome_arquivo in (".env"):
+    for nome_arquivo in (".env",):
         caminho_env = ROOT_DIR / nome_arquivo
         if not caminho_env.exists():
             continue
@@ -286,8 +286,9 @@ def gerar_grafico_pizza(df: pd.DataFrame, sufixo: str) -> None:
         startangle=90,
         wedgeprops={"edgecolor": "white", "linewidth": 1},
     )
-    plt.title("Top 10 Órgãos com mais vagas \n" , fontsize=14)
+    plt.title("Top 10 Orgãos com mais vagasz\n" , fontsize=14)
     plt.axis("equal")
+    plt.legend(resumo["sigla_orgao"], loc="center left", bbox_to_anchor=(1, 0, 0.5, 1), fontsize=9)
     plt.tight_layout()
     caminho = PASTA_SAIDA / f"grafico_pizza_{sufixo}.png"
     plt.savefig(caminho, dpi=160)
@@ -299,16 +300,45 @@ def gerar_grafico_linha(df: pd.DataFrame, sufixo: str) -> None:
         .sort_index()
     )
 
-    plt.figure(figsize=(13, 6))
-    plt.plot(serie.index.astype(str), serie.values, color="#c45c3c", linewidth=2.5)
-    plt.title("Evolução anual das ocupadas")
-    plt.xlabel("Ano")
-    plt.ylabel("Quantidade ocupada")
-    plt.xticks(rotation=45)
-    plt.grid(alpha=0.25)
+    fig, ax = plt.subplots(figsize=(14, 7))
+    
+    # Preenchimento sob a linha
+    ax.fill_between(range(len(serie)), serie.values, alpha=0.25, color="#c45c3c")
+    
+    # Linha com marcadores
+    ax.plot(range(len(serie)), serie.values, color="#c45c3c", linewidth=3, 
+            marker="o", markersize=10, markeredgecolor="white", markeredgewidth=2,
+            label="Posições ocupadas")
+    
+    # Títulos e labels
+    ax.set_title("Evolução Anual de Posições Ocupadas", fontsize=16, fontweight="bold", pad=20)
+    ax.set_xlabel("Ano", fontsize=13, fontweight="bold")
+    ax.set_ylabel("Quantidade de Posições Ocupadas", fontsize=13, fontweight="bold")
+    
+    # Formatação dos eixos
+    ax.set_xticks(range(len(serie)))
+    ax.set_xticklabels(serie.index.astype(str), rotation=45, fontsize=11)
+    ax.tick_params(axis="y", labelsize=11)
+    
+    # Grid melhorado
+    ax.grid(True, alpha=0.3, linestyle="--", linewidth=0.8, color="gray")
+    ax.set_axisbelow(True)
+    
+    # Adicionar valores nos pontos
+    for i, v in enumerate(serie.values):
+        ax.text(i, v + max(serie.values) * 0.02, f"{int(v):,.0f}", 
+                ha="center", va="bottom", fontsize=10, fontweight="bold", color="#c45c3c")
+    
+    # Legenda
+    ax.legend(loc="upper left", fontsize=12, framealpha=0.98, edgecolor="gray")
+    
+    # Fundo
+    ax.set_facecolor("#f8f9fa")
+    fig.patch.set_facecolor("white")
+    
     plt.tight_layout()
     caminho = PASTA_SAIDA / f"grafico_linha_{sufixo}.svg"
-    plt.savefig(caminho)
+    plt.savefig(caminho, dpi=300, bbox_inches="tight")
     plt.close()
 
 def preparar_dataframe_analise(df: pd.DataFrame) -> pd.DataFrame:

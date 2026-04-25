@@ -1,2 +1,9 @@
 # Introdu-o-Ci-ncia-de-dados
 Atividades referentes a matéria: Introdução à Ciência de dados
+
+Parametros da .env
+
+DB_HOST=...
+DB_USER=...
+DB_PASSWORD=...
+DB_NAME=..
