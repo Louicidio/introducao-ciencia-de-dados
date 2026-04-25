@@ -26,6 +26,7 @@ def carregar_env_local() -> None:
 
 carregar_env_local()
 
+#parametros necessarios no .env
 DB_CONFIG = {
     "host": os.getenv("DB_HOST"),
     "user": os.getenv("DB_USER"),
