@@ -9,11 +9,7 @@ from sklearn.metrics import (
 
 
 def executar_knn(dados):
-    """Executa o modelo KNN para classificação e regressão."""
-
-    print("\n" + "=" * 70)
-    print("MODELO: KNN (K-Nearest Neighbors)")
-    print("=" * 70)
+    # Executa o modelo KNN para classificação e regressão.
 
     X_train_scaled = dados['X_train_scaled']
     X_test_scaled = dados['X_test_scaled']
@@ -81,7 +77,6 @@ def executar_knn(dados):
     print("    Gráfico salvo: Graficos/knn_resultados.png")
 
     # --- KNN Regressão ---
-    print("\n--- KNN Regressão ---")
     knn_reg = KNeighborsRegressor(n_neighbors=best_k)
     knn_reg.fit(X_train_scaled, y_train_reg)
     y_pred_knn_reg = knn_reg.predict(X_test_scaled)
@@ -108,7 +103,6 @@ def executar_knn(dados):
 
     plt.tight_layout()
     plt.savefig('Graficos/knn_regressao.png', dpi=150, bbox_inches='tight')
-    print("    Gráfico salvo: Graficos/knn_regressao.png")
 
     return {
         'acc': acc_knn, 'prec': prec_knn, 'rec': rec_knn, 'f1': f1_knn,

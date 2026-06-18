@@ -6,12 +6,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 
 def executar_regressao_multipla(dados):
-    """Executa o modelo de Regressão Linear Múltipla."""
-
-    print("\n" + "=" * 70)
-    print("MODELO: REGRESSÃO LINEAR MÚLTIPLA")
-    print("=" * 70)
-
+    # Executa o modelo de Regressão Linear Múltipla.
     df = dados['df']
 
     X_multi = df[['APROVADA', 'DISTRIBUIDA', 'OCUPADA', 'VAGAS']].values

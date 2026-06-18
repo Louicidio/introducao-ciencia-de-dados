@@ -1,0 +1,176 @@
+============================================================
+ROTEIRO  –  Pós-processamento 1: Filtro por Formato
+============================================================
+
+[SLIDE 1 – MOTIVAÇÃO]
+─────────────────────────────────────────────────────────
+  O BoVW (Bag of Visual Words) compara imagens pela textura,
+  mas ignora completamente a geometria do objeto.
+
+  Exemplo: um relógio redondo e uma régua podem ter histogramas
+  SIFT parecidos (muitas bordas retas nas duas imagens), mas o
+  formato dos objetos é totalmente diferente.
+
+  Solução: filtrar pelo FORMATO usando circularidade.
+
+---------------------------------------------------------
+O QUE É CIRCULARIDADE?
+                    4π × área
+  circularidade = ─────────────
+                   perímetro²
+
+  - Círculo perfeito  →  1.0
+  - Quadrado          →  0.78
+  - Objeto alongado   →  0.2 ~ 0.4
+  - Quanto mais irregular, mais próximo de 0.0
+
+---------------------------------------------------------
+EXEMPLO NUMÉRICO:
+  Query: usuário seleciona um olho de um animal (≈ círculo)
+         circularidade ≈ 0.85
+
+  Doc A: também contém olho circular → circ ≈ 0.82
+         diferença = |0.85 - 0.82| = 0.03  ✅ MANTIDO
+
+  Doc B: contém uma pata alongada → circ ≈ 0.35
+         diferença = |0.85 - 0.35| = 0.50  ❌ REMOVIDO
+
+  Limiar usado: 0.15 (parâmetro LIMITE_DIFERENCA_FORMATO)
+
+
+[SLIDE 2 – FUNÇÃO calcular_circularidade (passo a passo)]
+─────────────────────────────────────────────────────────
+  Entrada: imagem RGB + bbox opcional
+
+  Passo 1: Recorte
+    - Query:  recorta a ROI exata que o usuário selecionou
+    - Docs:   usa a imagem inteira (bbox=None)
+
+  Passo 2: Tons de cinza
+    cv2.COLOR_RGB2GRAY
+
+  Passo 3: Binarização automática (OTSU)
+    cv2.threshold(..., THRESH_BINARY_INV + THRESH_OTSU)
+    → O Otsu calcula o melhor limiar automaticamente
+    → Não depende de valor fixo → robusto a iluminação
+
+  Passo 4: Encontrar contornos
+    cv2.findContours(..., RETR_EXTERNAL, ...)
+    → Apenas contornos externos do objeto
+
+  Passo 5: Pegar o maior contorno
+    max(contornos, key=cv2.contourArea)
+
+  Passo 6: Área e Perímetro
+    cv2.contourArea()   → área em pixels
+    cv2.arcLength()     → perímetro em pixels
+
+  Passo 7: Retornar circularidade
+    (4 * π * area) / (perímetro)²
+    Ou 0.0 se não houver contorno ou perímetro = 0
+
+---------------------------------------------------------
+POR QUE DETECÇÃO AUTOMÁTICA NOS DOCS?
+  - Na query, o usuário marcou manualmente o objeto
+  - Nos docs, ninguém marcou → detectamos automaticamente
+    o maior objeto (maior contorno) como sendo o principal
+  - Premissa: o maior objeto em primeiro plano é o relevante
+
+
+[SLIDE 3 – FUNÇÃO filtrar_por_formato]
+─────────────────────────────────────────────────────────
+  Entrada:
+    - ranking      : lista de todos os candidatos
+    - query_img    : imagem da query
+    - bbox_query   : ROI selecionada pelo usuário
+    - limite_diferenca : 0.15 (parâmetro global)
+
+  Passo 1: Circularidade da query
+    circ_query = calcular_circularidade(query_img, bbox=bbox_query)
+    → usa a ROI exata do usuário
+
+  Passo 2: Para cada documento no ranking:
+    a) circ_item = calcular_circularidade(item["imagem"], bbox=None)
+       → detecta automaticamente o maior objeto
+
+    b) diferenca = |circ_query - circ_item|
+
+    c) anota o item com circ_item e dif_formato
+
+    d) Se diferenca <= 0.15 → mantidos
+       Se diferenca >  0.15 → removidos
+
+  Passo 3: Exibe quantos foram mantidos e removidos
+
+  Retorna: mantidos, removidos, circ_query
+
+
+[SLIDE 4 – COMO É USADO NO main()]
+─────────────────────────────────────────────────────────
+  Etapa crítica: busca AMPLA antes de filtrar.
+
+  ranking_sim_amplo, _, hist_query = buscar_query(
+      query_img, indice, centros,
+      bbox_query=bbox_query,
+      top_k=len(indice)   ← TODOS os documentos!
+  )
+
+  mantidos_formato, _, circ_query = filtrar_por_formato(
+      ranking_sim_amplo, query_img, bbox_query,
+      limite_diferenca=0.15
+  )
+
+  ranking_formato = mantidos_formato[:5]   ← Top-5 após filtro
+
+---------------------------------------------------------
+POR QUE top_k=len(indice)?
+  - O ranking inicial (top_k=5) só tem 5 documentos
+  - Se o filtro remover 2 deles, sobrariam só 3
+  - Com o ranking AMPLO (todos os docs), candidatos
+    de posições inferiores podem subir ao top-5
+  - O filtro opera sobre TODOS, depois corta no top-5
+
+---------------------------------------------------------
+RESUMO DO FLUXO:
+  1. BoVW ranqueia TODOS os documentos por similaridade
+  2. Filtro de formato remove os de circularidade diferente
+  3. Top-5 sobreviventes formam o ranking_formato
+
+
+[SLIDE 5 – ANÁLISE CRÍTICA]
+─────────────────────────────────────────────────────────
+  Pontos fortes:
+  ✔ Complementa o BoVW com informação geométrica
+  ✔ Otsu é automático → robusto a iluminação
+  ✔ Simples e rápido de calcular
+
+  Limitações:
+  ✘ Objetos com furos (ex: argola) confundem o contorno
+  ✘ Fundo poluído pode gerar contorno errado
+  ✘ Circularidade é uma métrica 1D simples, não captura
+    toda a complexidade do formato (ex: estrela vs flor
+    podem ter circularidade parecida)
+  ✘ O maior contorno pode não ser o objeto de interesse
+    (ex: fundo com textura forte)
+
+  Possíveis melhorias:
+  → Usar momentos de Hu (7 invariantes de forma)
+  → Aplicar GrabCut para segmentar o objeto principal
+  → Combinar com detecção de bordas Canny
+
+
+[DICAS PARA APRESENTAR]
+─────────────────────────────────────────────────────────
+  1. Abra o código no VSCode e vá navegando pelas funções
+     enquanto explica (não leia o slide, mostre o código)
+
+  2. Mostre uma imagem de output real:
+     recuperacao_query0_formato.png
+     → aponte qual doc foi removido e qual foi mantido
+
+  3. Se possível, execute o código ao vivo e mostre o
+     print do terminal com "mantidos=X | removidos=Y"
+
+  4. Para a pergunta "e se não houver contorno?":
+     A função retorna 0.0, o que praticamente sempre cai
+     fora do limiar e remove o documento (seguro).

@@ -6,11 +6,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 
 def executar_regressao_linear(dados):
-    """Executa o modelo de Regressão Linear Simples."""
-
-    print("\n" + "=" * 70)
-    print("MODELO: REGRESSÃO LINEAR SIMPLES")
-    print("=" * 70)
+    # Executa o modelo de Regressão Linear Simples.
 
     df = dados['df']
 

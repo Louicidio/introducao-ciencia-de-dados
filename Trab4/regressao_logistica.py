@@ -8,13 +8,13 @@ from sklearn.metrics import (
 
 
 def sigmoid(z):
-    """Função sigmoide: S(z) = 1 / (1 + e^(-z))"""
+    # Função sigmoide: S(z) = 1 / (1 + e^(-z))
     z = np.clip(z, -500, 500)
     return 1 / (1 + np.exp(-z))
 
 
 def log_verossimilhanca(X, y, beta):
-    """Calcula a log-verossimilhança."""
+    # Calcula a log-verossimilhança.
     z = X @ beta
     p = sigmoid(z)
     p = np.clip(p, 1e-15, 1 - 1e-15)
@@ -22,7 +22,7 @@ def log_verossimilhanca(X, y, beta):
 
 
 def gradiente_descendente(X, y, lr=0.01, n_iter=1000):
-    """Otimização por Gradiente Descendente."""
+    # Otimização por Gradiente Descendente.
     n, m = X.shape
     beta = np.zeros(m)
     log_likelihoods = []
@@ -39,11 +39,7 @@ def gradiente_descendente(X, y, lr=0.01, n_iter=1000):
 
 
 def executar_regressao_logistica(dados):
-    """Executa o modelo de Regressão Logística com pipeline completo."""
-
-    print("\n" + "=" * 70)
-    print("MODELO: REGRESSÃO LOGÍSTICA (Pipeline Completo)")
-    print("=" * 70)
+    # Executa o modelo de Regressão Logística com pipeline completo.
 
     features = dados['features']
     X_train_scaled = dados['X_train_scaled']
@@ -154,10 +150,7 @@ def executar_regressao_logistica(dados):
     plt.savefig('Graficos/regressao_logistica.png', dpi=150, bbox_inches='tight')
     print("    Gráfico salvo: Graficos/regressao_logistica.png")
 
-    # --- Interpretação dos Coeficientes ---
-    print("\n" + "=" * 70)
-    print("INTERPRETAÇÃO DOS COEFICIENTES - REGRESSÃO LOGÍSTICA")
-    print("=" * 70)
+    # --- Interpretação dos Coeficientes --
 
     print("\nOs coeficientes da Regressão Logística representam o log-odds:")
     print("Odds Ratio = e^(coeficiente)\n")

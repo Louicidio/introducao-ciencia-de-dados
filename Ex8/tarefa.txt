@@ -1,0 +1,31 @@
+1.
+A regressão múltipla permite isolar o efeito de cada preditor mantendo os demais constantes, evitando viés por variáveis omitidas — na regressão simples, preditores relevantes ausentes contaminam a estimativa.
+
+2. 
+Assume-se ceteris paribus (tudo mais constante): βk é a variação esperada em Y quando Xk aumenta em 1 unidade, mantendo todas as outras variáveis fixas.
+
+3.
+Codifica-se como 0/1 (ex: 1 = tem PhD, 0 = não tem). O coeficiente associado representa a diferença média em Y entre os dois grupos, mantendo os demais preditores constantes.
+
+4. Premissas do OLS:
+Linearidade: Y é linear nos parâmetros. Violação → estimativas enviesadas.
+Homocedasticidade: Variância dos erros é constante. Violação → erros-padrão incorretos, testes de hipótese inválidos.
+
+5.
+Ocorre quando uma variável relevante correlacionada tanto com Y quanto com preditores incluídos é omitida. O coeficiente estimado "absorve" parte do efeito da variável ausente, tornando-se enviesado e inconsistente.
+
+6.
+R² nunca diminui ao adicionar variáveis, mesmo irrelevantes. Isso pode sugerir melhora espúria do modelo. O R² ajustado penaliza variáveis desnecessárias e é mais confiável.
+
+7.
+Objetivo: estimar a distribuição amostral de estatísticas (coeficientes, erros-padrão) via reamostragem com reposição. Útil quando não se confia nas premissas de normalidade ou a fórmula analítica do erro-padrão é complexa/desconhecida.
+
+8.
+Reduzir overfitting e multicolinearidade adicionando uma penalidade à magnitude dos coeficientes, encolhendo-os em direção a zero e melhorando a generalização.
+
+9. 
+Ridge (L2): Penaliza soma dos quadrados → coeficientes encolhem mas não zeram.
+Lasso (L1): Penaliza soma dos valores absolutos → pode zerar coeficientes, realizando seleção automática de variáveis.
+
+10. 
+As penalidades Ridge/Lasso dependem da magnitude dos coeficientes. Se variáveis têm escalas diferentes, preditores com maior escala são penalizados injustamente. Padronizar (média 0, variância 1) garante tratamento equitativo.

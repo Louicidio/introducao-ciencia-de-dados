@@ -21,11 +21,7 @@ from regressao_logistica import executar_regressao_logistica
 
 
 def comparar_modelos(result_knn, result_lr, result_multi, result_log):
-    """Gera gráfico comparativo entre todos os modelos."""
-
-    print("\n" + "=" * 70)
-    print("COMPARAÇÃO DOS MODELOS")
-    print("=" * 70)
+    # Gera gráfico comparativo entre todos os modelos.
 
     print("\n--- Modelos de Classificação ---")
     print(f"{'Modelo':<25} {'Acurácia':<12} {'Precisão':<12} {'Recall':<12} {'F1-Score':<12}")
@@ -81,15 +77,10 @@ def comparar_modelos(result_knn, result_lr, result_multi, result_log):
 
     plt.tight_layout()
     plt.savefig('Graficos/comparacao_modelos.png', dpi=150, bbox_inches='tight')
-    print("\n    Gráfico salvo: Graficos/comparacao_modelos.png")
 
 
 def main():
-    """Função principal que executa todo o pipeline."""
-
-    print("=" * 70)
-    print("TRABALHO COMPUTACIONAL: O PIPELINE NA PRÁTICA")
-    print("=" * 70)
+    # Função principal que executa todo o pipeline.
 
     # 1. Carregar e preparar dados
     df = carregar_e_preparar_dados('ano_completo_unificado.xlsx')
